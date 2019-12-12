@@ -126,7 +126,7 @@ class GhostNet(nn.Module):
         block = GhostBottleneck
         for k, exp_size, c, use_se, s in self.cfgs:
             output_channel = _make_divisible(c * width_mult, 8)
-            layers.append(block(input_channel, exp_size, output_channel, k, s, use_se))
+            layers.append(block(input_channel, exp_size * width_mult, output_channel, k, s, use_se))
             input_channel = output_channel
         self.features = nn.Sequential(*layers)
 
