@@ -87,7 +87,7 @@ class GhostBottleneck(nn.Module):
             # pw
             GhostModule(inp, hidden_dim, kernel_size=1, relu=True),
             # dw
-            depthwise_conv(hidden_dim, hidden_dim, kernel_size, stride, relu=False) if stride==2 else nn.Sequential(),,
+            depthwise_conv(hidden_dim, hidden_dim, kernel_size, stride, relu=False) if stride==2 else nn.Sequential(),
             # Squeeze-and-Excite
             SELayer(hidden_dim) if use_se else nn.Sequential(),
             # pw-linear
