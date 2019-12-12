@@ -87,7 +87,7 @@ class GhostBottleneck(nn.Module):
             # pw
             GhostModule(inp, hidden_dim, kernel_size=1, relu=True),
             # dw
-            depthwise_conv(hidden_dim, hidden_dim, kernel_size, stride, relu=False),
+            depthwise_conv(hidden_dim, hidden_dim, kernel_size, stride, relu=False) if stride==2 else nn.Sequential(),,
             # Squeeze-and-Excite
             SELayer(hidden_dim) if use_se else nn.Sequential(),
             # pw-linear
@@ -126,7 +126,8 @@ class GhostNet(nn.Module):
         block = GhostBottleneck
         for k, exp_size, c, use_se, s in self.cfgs:
             output_channel = _make_divisible(c * width_mult, 8)
-            layers.append(block(input_channel, exp_size * width_mult, output_channel, k, s, use_se))
+            exp_size = _make_divisible(exp_size * width_mult, 8)
+            layers.append(block(input_channel, exp_size, output_channel, k, s, use_se))
             input_channel = output_channel
         self.features = nn.Sequential(*layers)
 
@@ -140,7 +141,7 @@ class GhostNet(nn.Module):
         )
         input_channel = output_channel
 
-        output_channel = _make_divisible(1280 * width_mult, 8) if width_mult > 1.0 else 1280
+        output_channel = _make_divisible(1280 * width_mult, 8)
         self.classifier = nn.Sequential(
             nn.Linear(input_channel, output_channel, bias=False),
             nn.BatchNorm1d(output_channel),
