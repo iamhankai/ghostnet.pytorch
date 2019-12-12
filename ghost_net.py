@@ -114,7 +114,7 @@ class GhostNet(nn.Module):
         self.cfgs = cfgs
 
         # building first layer
-        output_channel = _make_divisible(16 * width_mult, 8)
+        output_channel = _make_divisible(16 * width_mult, 4)
         layers = [nn.Sequential(
             nn.Conv2d(3, output_channel, 3, 2, 1, bias=False),
             nn.BatchNorm2d(output_channel),
@@ -125,14 +125,14 @@ class GhostNet(nn.Module):
         # building inverted residual blocks
         block = GhostBottleneck
         for k, exp_size, c, use_se, s in self.cfgs:
-            output_channel = _make_divisible(c * width_mult, 8)
-            exp_size = _make_divisible(exp_size * width_mult, 8)
-            layers.append(block(input_channel, exp_size, output_channel, k, s, use_se))
+            output_channel = _make_divisible(c * width_mult, 4)
+            hidden_channel = _make_divisible(exp_size * width_mult, 4)
+            layers.append(block(input_channel, hidden_channel, output_channel, k, s, use_se))
             input_channel = output_channel
         self.features = nn.Sequential(*layers)
 
         # building last several layers
-        output_channel = _make_divisible(exp_size * width_mult, 8)
+        output_channel = _make_divisible(exp_size * width_mult, 4)
         self.squeeze = nn.Sequential(
             nn.Conv2d(input_channel, output_channel, 1, 1, 0, bias=False),
             nn.BatchNorm2d(output_channel),
@@ -141,7 +141,7 @@ class GhostNet(nn.Module):
         )
         input_channel = output_channel
 
-        output_channel = _make_divisible(1280 * width_mult, 8)
+        output_channel = 1280
         self.classifier = nn.Sequential(
             nn.Linear(input_channel, output_channel, bias=False),
             nn.BatchNorm1d(output_channel),
@@ -185,9 +185,9 @@ def ghost_net(**kwargs):
         [3, 480, 112, 1, 1],
         [3, 672, 112, 1, 1],
         [5, 672, 160, 1, 2],
+        [5, 960, 160, 0, 1],
         [5, 960, 160, 1, 1],
-        [5, 960, 160, 1, 1],
-        [5, 960, 160, 1, 1],
+        [5, 960, 160, 0, 1],
         [5, 960, 160, 1, 1]
     ]
     return GhostNet(cfgs, **kwargs)
