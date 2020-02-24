@@ -146,6 +146,7 @@ class GhostNet(nn.Module):
             nn.Linear(input_channel, output_channel, bias=False),
             nn.BatchNorm1d(output_channel),
             nn.ReLU(inplace=True),
+            nn.Dropout(0.2),
             nn.Linear(output_channel, num_classes),
         )
 
