@@ -44,6 +44,6 @@ GhostNet beats other SOTA lightweight CNNs such as **MobileNetV3** and **FBNet**
   title={GhostNet: More Features from Cheap Operations},
   author={Han, Kai and Wang, Yunhe and Tian, Qi and Guo, Jianyuan and Xu, Chunjing and Xu, Chang},
   booktitle={CVPR},
-  year={2019}
+  year={2020}
 }
 ```
