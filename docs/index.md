@@ -10,7 +10,7 @@ Deploying convolutional neural networks (CNNs) on embedded devices is difficult 
 
 ## Code
 
-- TensorFlow version: https://github.com/huawei-noah/ghostnet
+- TensorFlow version: [https://github.com/huawei-noah/ghostnet](https://github.com/huawei-noah/ghostnet).
 
 - PyTorch version: [https://github.com/iamhankai/ghostnet.pytorch](https://github.com/iamhankai/ghostnet.pytorch).
 
