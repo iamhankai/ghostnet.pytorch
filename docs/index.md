@@ -25,7 +25,7 @@ Deploying convolutional neural networks (CNNs) on embedded devices is difficult 
 - **Ghost bottleneck & GhostNet**
 
   <div align="center">
-     <img src="./ghost_bneck.png" width="360"><img src="./ghostnet.png" width="360">
+     <img src="./ghost_bneck.png" width="300"><img src="./ghostnet.png" width="360">
   </div>
 
 ## Experiments
