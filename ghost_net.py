@@ -98,7 +98,7 @@ class GhostBottleneck(nn.Module):
             self.shortcut = nn.Sequential()
         else:
             self.shortcut = nn.Sequential(
-                depthwise_conv(inp, inp, 3, stride, relu=False),
+                depthwise_conv(inp, inp, kernet_size, stride, relu=False),
                 nn.Conv2d(inp, oup, 1, 1, 0, bias=False),
                 nn.BatchNorm2d(oup),
             )
