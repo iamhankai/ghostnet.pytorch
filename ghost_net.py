@@ -98,7 +98,7 @@ class GhostBottleneck(nn.Module):
             self.shortcut = nn.Sequential()
         else:
             self.shortcut = nn.Sequential(
-                depthwise_conv(inp, inp, kernet_size, stride, relu=False),
+                depthwise_conv(inp, inp, kernel_size, stride, relu=False),
                 nn.Conv2d(inp, oup, 1, 1, 0, bias=False),
                 nn.BatchNorm2d(oup),
             )
@@ -170,26 +170,26 @@ class GhostNet(nn.Module):
 
 def ghost_net(**kwargs):
     """
-    Constructs a MobileNetV3-Large model
+    Constructs a GhostNet model
     """
     cfgs = [
         # k, t, c, SE, s 
-        [3,  16,  16, 0, 1],
+        [-1,  16,  16, 0, 1],
         [3,  48,  24, 0, 2],
-        [3,  72,  24, 0, 1],
+        [-1,  72,  24, 0, 1],
         [5,  72,  40, 1, 2],
-        [5, 120,  40, 1, 1],
+        [-1, 120,  40, 1, 1],
         [3, 240,  80, 0, 2],
-        [3, 200,  80, 0, 1],
-        [3, 184,  80, 0, 1],
-        [3, 184,  80, 0, 1],
-        [3, 480, 112, 1, 1],
-        [3, 672, 112, 1, 1],
+        [-1, 200,  80, 0, 1],
+        [-1, 184,  80, 0, 1],
+        [-1, 184,  80, 0, 1],
+        [-1, 480, 112, 1, 1],
+        [-1, 672, 112, 1, 1],
         [5, 672, 160, 1, 2],
-        [5, 960, 160, 0, 1],
-        [5, 960, 160, 1, 1],
-        [5, 960, 160, 0, 1],
-        [5, 960, 160, 1, 1]
+        [-1, 960, 160, 0, 1],
+        [-1, 960, 160, 1, 1],
+        [-1, 960, 160, 0, 1],
+        [-1, 960, 160, 1, 1]
     ]
     return GhostNet(cfgs, **kwargs)
 
