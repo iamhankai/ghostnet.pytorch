@@ -1,5 +1,7 @@
 # GhostNet
 
+**News**: Official pytroch pretrained model is available at https://github.com/huawei-noah/ghostnet/tree/master/pytorch
+
 This repo provides Pytorch implementation of CVPR 2020 paper [GhostNet: More Features from Cheap Operations](https://arxiv.org/abs/1911.11907). The TensorFlow implementation with pretrained model is available at [here](https://github.com/iamhankai/ghostnet).
 
 ### Requirements
