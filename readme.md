@@ -1,8 +1,8 @@
+**This repo only implements the demo code for GhostNet. Please move to the [official repo](https://github.com/iamhankai/ghostnet) for more details.**
+
 # GhostNet
 
-**News**: Official pytroch pretrained model is available at https://github.com/huawei-noah/ghostnet/tree/master/pytorch
-
-This repo provides Pytorch implementation of CVPR 2020 paper [GhostNet: More Features from Cheap Operations](https://arxiv.org/abs/1911.11907). The TensorFlow implementation with pretrained model is available at [here](https://github.com/iamhankai/ghostnet).
+This repo provides demo Pytorch implementation of CVPR 2020 paper [GhostNet: More Features from Cheap Operations](https://arxiv.org/abs/1911.11907). The TensorFlow/PyTorch implementation with pretrained model is available at [here](https://github.com/iamhankai/ghostnet).
 
 ### Requirements
 The code was verified on Python3, PyTorch 1.0+.
